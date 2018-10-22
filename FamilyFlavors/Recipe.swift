@@ -12,12 +12,14 @@ import Foundation
 class Recipe {
     
     var title: String
-    var category: Category
+   
+    var image: String
     
     
-    init(title:String, category:Category) {
+    init(title:String, image: String) {
         self.title = title
-        self.category = category
+        
+        self.image = image
     }
     
     

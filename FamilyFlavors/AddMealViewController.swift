@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import Alamofire
 
 class AddMealViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -96,48 +97,32 @@ class AddMealViewController: UIViewController, UINavigationControllerDelegate, U
         
         post(taskTitle: taskTitle, recipeCategory: recipeCategoryString, image: image)
     }
+    
+    
     func post(taskTitle:String, recipeCategory: String, image:UIImage) {
+       
         
-        
-        
-        let headers = [
-            "content-type": "application/json",
-            "x-apikey": "f22738e5bf0d2c7269a9fdc3614db45f09e70",
-            "cache-control": "no-cache"
-        ]
-        
-        let imageData:NSData = image.pngData()! as NSData
-        let strBase64 = imageData.base64EncodedString(options: .lineLength64Characters)
-        
+        let imageData = image.jpegData(compressionQuality: 0.1)!
         let parameters = [
             "Title": taskTitle,
             "Category": recipeCategory,
-            "Image": image
-            ] as [String : Any]
+            "Image":imageData.base64EncodedString()
+            ]
         
+        let headers = [
+            
+            "x-apikey": "f22738e5bf0d2c7269a9fdc3614db45f09e70",
+            
+        ]
         
-        let postData = try? JSONSerialization.data(withJSONObject: parameters, options: [])
+        Alamofire.request("https://familyflavors-d997.restdb.io/rest/recipe", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
         
-        let request = NSMutableURLRequest(url: NSURL(string: "https://familyflavors-d997.restdb.io/rest/recipe"  )! as URL,
-                                          cachePolicy: .useProtocolCachePolicy,
-                                          timeoutInterval: 10.0)
-        request.httpMethod = "POST"
-        request.allHTTPHeaderFields = headers
-        request.httpBody = (postData as! Data)
-        
-        let session = URLSession.shared
-        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
-            if (error != nil) {
-                //print(error)
-            } else {
-                let httpResponse = response as? HTTPURLResponse
-                //print(httpResponse)
-            }
-        })
-        
-        dataTask.resume()
-    }
+        _ = navigationController?.popViewController(animated: true)
 
+        
+    }
+ 
+    
  
 }
 
