@@ -16,6 +16,7 @@
 		4D17738F217BBEF90042B99D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D17738E217BBEF90042B99D /* Assets.xcassets */; };
 		4D177391217BC16C0042B99D /* AddMealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D177390217BC16C0042B99D /* AddMealViewController.swift */; };
 		4D3BA7D0218299E100C2F656 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3BA7CF218299E100C2F656 /* NetworkManager.swift */; };
+		4D3BA7D22182C44400C2F656 /* ViewRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3BA7D12182C44400C2F656 /* ViewRecipe.swift */; };
 		6AB2488F11102045A344E2C6 /* Pods_FamilyFlavors.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B58DC125CE440B729A38790C /* Pods_FamilyFlavors.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,7 @@
 		4D177390217BC16C0042B99D /* AddMealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMealViewController.swift; sourceTree = "<group>"; };
 		4D177392217BD0430042B99D /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		4D3BA7CF218299E100C2F656 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		4D3BA7D12182C44400C2F656 /* ViewRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRecipe.swift; sourceTree = "<group>"; };
 		B58DC125CE440B729A38790C /* Pods_FamilyFlavors.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FamilyFlavors.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -72,6 +74,7 @@
 			children = (
 				4D0DD55521793A2D003B4A98 /* AppDelegate.swift */,
 				4D0DD55721793A2D003B4A98 /* ViewController.swift */,
+				4D3BA7D12182C44400C2F656 /* ViewRecipe.swift */,
 				4D0DD56721794A03003B4A98 /* Recipe.swift */,
 				4D0DD56921794BA6003B4A98 /* RecipeTableViewCell.swift */,
 				4D177390217BC16C0042B99D /* AddMealViewController.swift */,
@@ -224,6 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D3BA7D22182C44400C2F656 /* ViewRecipe.swift in Sources */,
 				4D3BA7D0218299E100C2F656 /* NetworkManager.swift in Sources */,
 				4D0DD56821794A03003B4A98 /* Recipe.swift in Sources */,
 				4D0DD55821793A2D003B4A98 /* ViewController.swift in Sources */,

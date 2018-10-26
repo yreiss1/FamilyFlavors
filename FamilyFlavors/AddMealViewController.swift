@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 import Alamofire
 
-class AddMealViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class AddMealViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
  
 
@@ -48,7 +48,8 @@ class AddMealViewController: UIViewController, UINavigationControllerDelegate, U
         let categoryPicker:UIPickerView = UIPickerView()
         categoryPicker.delegate = self
         categoryPicker.dataSource = self
-        
+        recipeTitle.setBottomBorder()
+        recipeCategories.setBottomBorder()
         
         recipeCategories.inputView = categoryPicker
         // Do any additional setup after loading the view.
@@ -110,5 +111,18 @@ class AddMealViewController: UIViewController, UINavigationControllerDelegate, U
  
     
  
+}
+
+extension UITextField {
+    func setBottomBorder() {
+        self.borderStyle = .none
+        self.layer.backgroundColor = UIColor.white.cgColor
+        
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        self.layer.shadowOpacity = 1.0
+        self.layer.shadowRadius = 0.0
+    }
 }
 
