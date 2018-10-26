@@ -14,23 +14,23 @@ class AddMealViewController: UIViewController, UINavigationControllerDelegate, U
     
  
 
-    var categories: [String] = ["Healthy", "Sweet", "Savory"]
+    var categories: [String] = ["Healthy", "Sweet", "Spicey"]
     
     @IBOutlet weak var recipeTitle: UITextField!
     @IBOutlet weak var recipeCategories: UITextField!
     @IBOutlet weak var photo: UIImageView!
-    
+    var delegate: AddRecipeDelegate?
     @IBAction func importImage(_ sender: Any) {
         let image = UIImagePickerController()
         image.delegate = self
-        image.sourceType = .photoLibrary//UIImagePickerController.SourceType.photoLibrary
+        image.sourceType = UIImagePickerController.SourceType.photoLibrary
         image.allowsEditing = false
         self.present(image, animated: true) {
             //After complete
         }
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    @objc internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             
@@ -48,6 +48,7 @@ class AddMealViewController: UIViewController, UINavigationControllerDelegate, U
         let categoryPicker:UIPickerView = UIPickerView()
         categoryPicker.delegate = self
         categoryPicker.dataSource = self
+        
         
         recipeCategories.inputView = categoryPicker
         // Do any additional setup after loading the view.
@@ -83,7 +84,7 @@ class AddMealViewController: UIViewController, UINavigationControllerDelegate, U
     
     @IBAction func didTapAdd(_ sender: Any) {
         
-        guard let taskTitle: String = recipeTitle.text else {
+        guard let recipeTitle: String = recipeTitle.text else {
             return
         }
         
@@ -91,36 +92,21 @@ class AddMealViewController: UIViewController, UINavigationControllerDelegate, U
             return
         }
         
-        guard let image: UIImage = photo.image else {
+        guard let recipeImage: UIImage = photo.image else {
             return
         }
         
-        post(taskTitle: taskTitle, recipeCategory: recipeCategoryString, image: image)
-    }
-    
-    
-    func post(taskTitle:String, recipeCategory: String, image:UIImage) {
-       
+        let newRecipe :Recipe = Recipe.init(title: recipeTitle, image: recipeImage, category: recipeCategoryString)
+        delegate?.addRecipe(newRecipe: newRecipe)
         
-        let imageData = image.jpegData(compressionQuality: 0.1)!
-        let parameters = [
-            "Title": taskTitle,
-            "Category": recipeCategory,
-            "Image":imageData.base64EncodedString()
-            ]
+        NetworkManager.sharedInstance.postRecipes(in: newRecipe)
         
-        let headers = [
-            
-            "x-apikey": "f22738e5bf0d2c7269a9fdc3614db45f09e70",
-            
-        ]
-        
-        Alamofire.request("https://familyflavors-d997.restdb.io/rest/recipe", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
         
         _ = navigationController?.popViewController(animated: true)
-
-        
     }
+    
+    
+ 
  
     
  

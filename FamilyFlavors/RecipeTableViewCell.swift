@@ -14,9 +14,11 @@ class RecipeTableViewCell: UITableViewCell {
     
     @IBOutlet weak var photoImageView: UIImageView!
   
+    @IBOutlet weak var healthy: UIImageView!
+    @IBOutlet weak var spicey: UIImageView!
+    @IBOutlet weak var sweet: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        nameLabel.text = ""
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

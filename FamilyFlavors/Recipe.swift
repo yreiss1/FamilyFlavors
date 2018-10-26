@@ -7,27 +7,22 @@
 //
 
 import Foundation
+import UIKit
 
 
 class Recipe {
     
     var title: String
-   
-    var image: String
+    var category: String
+    var image: UIImage
     
     
-    init(title:String, image: String) {
+    init(title:String, image: UIImage, category: String) {
         self.title = title
-        
+        self.category = category
         self.image = image
     }
     
     
 }
 
-enum Category: String {
-    case BREAKFAST = "Breakfast"
-    case LUNCH = "Lunch"
-    case DINNER = "Dinner"
-    case DESSERT = "Dessert"
-}
